@@ -10,6 +10,6 @@ class HomeTest(TestCase):
         return self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        """Must usse index.html"""
+        """Must use index.html"""
         # response = self.client.get('/')
         self.assertTemplateUsed(self.response, 'index.html')

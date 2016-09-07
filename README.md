@@ -1,4 +1,4 @@
-Parte do Curso WttD / henrique Batos
+Parte do Curso WttD / Henrique Bastos
 
 ```
 Clone o repositório.
