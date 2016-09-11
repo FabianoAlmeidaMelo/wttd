@@ -6,13 +6,14 @@ Parte do Curso WttD / Henrique Bastos
 
 ## Como desenvolver?
 
+```
 Clone o repositório.
 Crie um virtualenv com Python 3.5.2
 Ative o virtualenv.
 Instale as dependências.
 Configure a instância com o .env
 Execute os testes.
-
+```
 
 ```console
 git clone git@github.com:FabianoAlmeidaMelo/wttd.git wttd
@@ -26,13 +27,14 @@ python manage.py test
 
 ## Como fazer o deploy:
 
+```
 Crie um instância no heroku.
 Envie as configurações para o heroku.
 Define uma SECRET_KEY segura para instância.
 Defina DEBUG=False
 Configure o serviço de email.
 Envie o código para o heroku
-
+```
 
 ```console
 heroku create minhainstancia
