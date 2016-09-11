@@ -4,6 +4,9 @@ Sistema de Eventos encomendado pela morena.
 
 Parte do Curso WttD / Henrique Bastos
 
+[![Build Status](https://travis-ci.org/FabianoAlmeidaMelo/wttd.svg?branch=master)](https://travis-ci.org/FabianoAlmeidaMelo/wttd)
+
+
 ## Como desenvolver?
 
 ```
