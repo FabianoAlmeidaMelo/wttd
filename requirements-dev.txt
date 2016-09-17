@@ -1,3 +1,4 @@
 -r requirements.txt
 django-extensions==1.7.4
 ipython[notebook]
+django-test-without-migrations==0.4
