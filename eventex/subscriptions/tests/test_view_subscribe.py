@@ -1,17 +1,17 @@
 from django.core import mail
 from django.test import TestCase
+from django.shortcuts import resolve_url
 from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
 
-class SubscribeGet(TestCase):
+class SubscriptionsNewGet(TestCase):
     def setUp(self):
-        self.response = self.client.get('/inscricao/')
+        self.response = self.client.get(resolve_url('subscriptions:new'))
         self.form = self.response.context['form']
 
     def test_get(self):
         """1: GET /inscricao/ must return status code 200"""
         self.assertEqual(200, self.response.status_code)
-        self.form = self.response.context['form']
 
     def test_template(self):
         """2: Must use subscription/suscription_form.html"""
@@ -44,16 +44,16 @@ class SubscribeGet(TestCase):
         self.assertIsInstance(self.form, SubscriptionForm)
 
 
-class SubscribePostValid(TestCase):
+class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
         data = dict(name="Fabiano Almeida", cpf='12345678901',
                     email='falmeidamelo@uol.com.br', phone='12-98223-9764')
-        self.response = self.client.post('/inscricao/', data)
+        self.response = self.client.post(resolve_url('subscriptions:new'), data)
 
     def test_post(self):
         """1: valid POST should redirect to/inscricao/"""
         # self.assertEqual(302, self.response.status_code)
-        self.assertRedirects(self.response, '/inscricao/1/')
+        self.assertRedirects(self.response, resolve_url('subscriptions:detail', 1))
 
     def test_send_subscribe_email(self):
         """2: must count email"""
@@ -62,9 +62,9 @@ class SubscribePostValid(TestCase):
     def test_save_subscription(self):
         self.assertTrue(Subscription.objects.exists())
 
-class SubscribePostInvalid(TestCase):
+class SubscriptionsNewPostInvalid(TestCase):
     def setUp(self):
-        self.response = self.client.post('/inscricao/', {'name': 'Fabiano', 'phone': '1', 'email': 'hkj'})
+        self.response = self.client.post(resolve_url('subscriptions:new'), {'name': 'Fabiano', 'phone': '1', 'email': 'hkj'})
         self.form = self.response.context['form']
         # print('ERROS: ', self.form.errors)
         # informe um endereço de email válido
