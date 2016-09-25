@@ -39,6 +39,19 @@ class SubscriptionFormTest(TestCase):
         exception = errors_list[0]
         self.assertEqual(code, exception.code)
 
+    def test_email_is_optional(self):
+        """Email is optional"""
+        form = self.make_validate_form(email='')
+        self.assertFalse(form.errors)
+
+    def test_phone_is_optional(self):
+        """Phone is optional"""
+        form = self.make_validate_form(phone='')
+        self.assertFalse(form.errors)
+
+    def test_must_informe_email_or_phone(self):
+        form = self.make_validate_form(phone='', email='')
+        self.assertListEqual(['__all__'], list(form.errors))
 
     def assertFormMessage(self, form, field, msg):
         errors = form.errors
