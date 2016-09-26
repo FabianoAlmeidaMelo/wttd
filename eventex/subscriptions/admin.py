@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.timezone import now
+from datetime import datetime
 from eventex.subscriptions.models import Subscription
 
 class SubscriptionModelAdmin(admin.ModelAdmin):
@@ -12,7 +12,7 @@ class SubscriptionModelAdmin(admin.ModelAdmin):
     actions = ['mark_as_paid']
 
     def subscrites_today(self, obj):
-        return obj.created_at == now().date()
+        return obj.created_at.date() == datetime.today().date()
 
     subscrites_today.short_description = 'inscrito hoje?'
     subscrites_today.boolean = True
