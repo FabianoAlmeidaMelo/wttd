@@ -1,0 +1,20 @@
+speaker_detail.html
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- OVERVIEW -->
+<section>
+    <div class="speakers content row padding-bottom-3 desktop-8 container">
+        <h2>
+            <a href="{{ speaker.site }}">{{ speaker.name }}</a>
+        </h2>
+        <img class="photo" src='{{ speaker.photo }}'>
+        <p>
+            {{ speaker.description|linebreaks }}<br>
+            {{ speaker.obs }}
+        </p>
+    </div>
+
+</section>
+
+{% endblock content %}

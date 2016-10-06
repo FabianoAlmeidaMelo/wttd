@@ -111,7 +111,5 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-# only to dev
-APPS_TO_DEV = tuple(config('INSTALLED_APPS', cast=lambda v: v.split(',')))
-if APPS_TO_DEV[0] != '':
-    INSTALLED_APPS += APPS_TO_DEV
+if DEBUG:
+    INSTALLED_APPS += ('test_without_migrations', 'django_extensions',)
