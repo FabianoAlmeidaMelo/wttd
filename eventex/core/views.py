@@ -13,8 +13,8 @@ def speaker_detail(request, slug):
 
 
 def talk_list(request):
-    morning_talks = Talk.objects.filter(start__lt='12:00')
-    afternoon_talks = Talk.objects.filter(start__gte='12:00')
+    morning_talks = Talk.objects.at_morning()
+    afternoon_talks = Talk.objects.at_afternoon()
     context = {}
     context['morning_talks'] = morning_talks
     context['afternoon_talks'] = afternoon_talks

@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url
 from eventex.core.models import Speaker, Talk
+from eventex.core.managers import PeriodManger
+
 
 class TalkModelTest(TestCase):
     def setUp(self):
@@ -41,3 +43,22 @@ class TalkModelTest(TestCase):
 
     def test_str(self):
         self.assertEqual('Título da Palestra', str(self.talk))
+
+
+class PeriodmangerTest(TestCase):
+    def setUp(self):
+        Talk.objects.create(title='Morning Talk', start='11:59')
+        Talk.objects.create(title='Afternoom Talk', start='12:00')
+
+    def test_manger(self):
+        self.assertIsInstance(Talk.objects, PeriodManger)
+
+    def test_at_morning(self):
+        qs = Talk.objects.at_morning()
+        expected = ['Morning Talk']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.title)
+
+    def test_at_afternoon(self):
+        qs = Talk.objects.at_afternoon()
+        expected = ['Afternoom Talk']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.title)
