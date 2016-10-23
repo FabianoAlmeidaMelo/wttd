@@ -13,15 +13,10 @@ def speaker_detail(request, slug):
 
 
 def talk_list(request):
-    morning_talks = Talk.objects.at_morning()
-    afternoon_talks = Talk.objects.at_afternoon()
-    courses = Course.objects.at_morning()
-    speaker = Speaker(name='Alan Turing', slug='alan-turing')
 
     context = {}
-    context['morning_talks'] = morning_talks
-    context['afternoon_talks'] = afternoon_talks
-    context['courses'] = courses
+    context['morning_talks'] = Talk.objects.at_morning()
+    context['afternoon_talks'] = Talk.objects.at_afternoon()
 
     return render(request, 'core/talk_list.html', context)
 

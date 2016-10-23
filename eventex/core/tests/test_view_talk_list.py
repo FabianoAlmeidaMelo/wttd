@@ -36,7 +36,7 @@ class TalkListGet(TestCase):
         self.assertTemplateUsed(self.response, 'core/talk_list.html')
 
     def test_context(self):
-        variables = ['morning_talks', 'afternoon_talks', 'courses']
+        variables = ['morning_talks', 'afternoon_talks']
         for key in variables:
             with self.subTest():
                 self.assertIn(key, self.response.context)
